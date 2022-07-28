@@ -109,7 +109,7 @@ d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geoj
   }).addTo(allEarthquakes);
 
   // Then we add the earthquake layer to our map.
-  allEarthquakes.addTo(map);
+  allEarthquakes.addTo(allEarthquakes);
 
   // Here we create a legend control object.
 let legend = L.control({
@@ -143,18 +143,18 @@ legend.onAdd = function() {
   // Finally, we our legend to the map.
   legend.addTo(map);
 
+});
   let myStyle = {
     color: "black",
-    weight: 10
-}
+    weight: 5}
 
 
   // 3. Use d3.json to make a call to get our Tectonic Plate geoJSON data.
-  let tectonicdata = "https://raw.githubusercontent.com/fraxen/tectonicplates/GeoJSON/PB2002_boundaries.json "
-  d3.json(tectonicdata).then(function(data) {
+  let tectonicdata = "https://raw.githubusercontent.com/TorreyRawlings/Mapping_Earthquakes/main/PB2002_boundaries.json"  
+  d3.json("https://raw.githubusercontent.com/TorreyRawlings/Mapping_Earthquakes/main/PB2002_boundaries.json").then(function(data) {    
     console.log(data);
     L.geoJSON(data, {
-      style: myStyle
-    })
-  }).addto(tectonicplates)
-});
+      style: {color: "#703606", weight: 3},
+    }).addto(tectonicplates);
+  });
+  tectonicplates.addTo(map);
